@@ -3,5 +3,99 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "authentication-project": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/authentication-project",
+      "sourceRoot": "projects/authentication-project/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/authentication-project",
+            "index": "projects/authentication-project/src/index.html",
+            "browser": "projects/authentication-project/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/authentication-project/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/authentication-project/public"
+              }
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/cyan-orange.css",
+              "projects/authentication-project/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "authentication-project:build:production"
+            },
+            "development": {
+              "buildTarget": "authentication-project:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/authentication-project/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/authentication-project/public"
+              }
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/cyan-orange.css",
+              "projects/authentication-project/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
   }
 }
