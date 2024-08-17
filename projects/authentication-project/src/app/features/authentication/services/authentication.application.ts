@@ -30,4 +30,12 @@ export class AuthenticationApplication {
   get isLoading(): Signal<boolean> {
     return this.store.isLoading
   }
+
+    /**
+   * Accesseur pour savoir si l'utilisateur est authentifié.
+   * @returns Un signal qui émet une valeur booléenne indiquant si l'utilisateur est authentifié.
+   */
+    get isAuthenticated(): Signal<boolean> {
+      return this.store.isAuthenticated
+    }
 }
